@@ -25,16 +25,21 @@ void MainWindow::on_pushButton_signIn_clicked()
     QString login = ui->lineEdit_login->text();
     QString password = ui->lineEdit_password->text();
 
-    if(login == "text" && password == "text")
+    QSqlQuery qry;
+
+    if(qry.exec("SELECT Login, Password FROM UsersList WHERE Login=\'" + login + "\' AND Password=\'" + password + "\'"))
     {
-        hide();
-        menuWindow->show();
+        if(qry.next())
+        {
+            hide();
+            menuWindow->show();
+        }
     }
+
     else {
         QMessageBox::information(this, "Login", "Incorrect");
     }
 }
-
 
 void MainWindow::on_pushButton_toRegistration_clicked()
 {

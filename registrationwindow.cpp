@@ -1,14 +1,17 @@
 #include "registrationwindow.h"
 #include "ui_registrationwindow.h"
 
+#include <QSqlRecord>
+
 RegistrationWindow::RegistrationWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::RegistrationWindow)
 {
     ui->setupUi(this);
 
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("./usersDB.db");
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("C:/Users/alexe/Documents/GitHub/rentCalculation_repo/DB/db.sqlite");
+
     if(db.open())
     {
         qDebug("open");
@@ -17,9 +20,6 @@ RegistrationWindow::RegistrationWindow(QWidget *parent) :
     {
         qDebug("not open");
     }
-
-    query = new QSqlQuery(db);
-    query->exec("CREATE TABLE UsersList(Login TEXT, Password TEXT, isAdmin BOOL);");
 
     model = new QSqlTableModel(this, db);
     model->setTable("UsersList");
@@ -48,7 +48,15 @@ void RegistrationWindow::on_pushButton_register_clicked()
 
     if(password == passwordConfirm)
     {
+        QSqlRecord newRecord = model->record();
 
+        newRecord.setValue("login", login);
+        newRecord.setValue("password", password);
+
+        model->insertRecord(-1, newRecord);
+        model->select();
+
+        QMessageBox::information(this, "Registration", "User added successfully!");
     }
     else{
         QMessageBox::information(this, "Login", "Incorrect");
