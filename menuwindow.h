@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "calculationmethodchoicewindow.h"
+#include "normativesettingwindow.h"
 
 namespace Ui {
 class MenuWindow;
@@ -24,9 +25,12 @@ private slots:
 
     void on_pushButton_toRenctCalculation_clicked();
 
+    void on_pushButton_toStandartSettings_clicked();
+
 private:
     Ui::MenuWindow *ui;
     CalculationMethodChoiceWindow *calculationMethodChoiceWindow;
+    NormativeSettingWindow *normativeSettingWindow;
 };
 
 #endif // MENUWINDOW_H

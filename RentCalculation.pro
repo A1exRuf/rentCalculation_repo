@@ -10,23 +10,38 @@ CONFIG += c++17
 
 SOURCES += \
     calculationmethodchoicewindow.cpp \
-    dbmanager.cpp \
+    calculations.cpp \
     main.cpp \
     mainwindow.cpp \
     menuwindow.cpp \
+    methodareawindow.cpp \
+    methodfixedtariffs.cpp \
+    methodnormatives.cpp \
+    methodtenantcount.cpp \
+    normativesettingwindow.cpp \
     registrationwindow.cpp
 
 HEADERS += \
     calculationmethodchoicewindow.h \
-    dbmanager.h \
+    calculations.h \
     mainwindow.h \
     menuwindow.h \
+    methodareawindow.h \
+    methodfixedtariffs.h \
+    methodnormatives.h \
+    methodtenantcount.h \
+    normativesettingwindow.h \
     registrationwindow.h
 
 FORMS += \
     calculationmethodchoicewindow.ui \
     mainwindow.ui \
     menuwindow.ui \
+    methodareawindow.ui \
+    methodfixedtariffs.ui \
+    methodnormatives.ui \
+    methodtenantcount.ui \
+    normativesettingwindow.ui \
     registrationwindow.ui
 
 # Default rules for deployment.

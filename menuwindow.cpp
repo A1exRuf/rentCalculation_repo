@@ -6,8 +6,10 @@ MenuWindow::MenuWindow(QWidget *parent) :
     ui(new Ui::MenuWindow)
 {
     ui->setupUi(this);
-    calculationMethodChoiceWindow = new CalculationMethodChoiceWindow(this);
+    calculationMethodChoiceWindow = new CalculationMethodChoiceWindow();
     connect(calculationMethodChoiceWindow, &CalculationMethodChoiceWindow::toMenuWindow, this, &CalculationMethodChoiceWindow::show);
+    normativeSettingWindow = new NormativeSettingWindow();
+    connect(normativeSettingWindow, &NormativeSettingWindow::toMenuWindow, this, &NormativeSettingWindow::show);
 }
 
 MenuWindow::~MenuWindow()
@@ -27,5 +29,12 @@ void MenuWindow::on_pushButton_toRenctCalculation_clicked()
 {
     hide();
     calculationMethodChoiceWindow->show();
+}
+
+
+void MenuWindow::on_pushButton_toStandartSettings_clicked()
+{
+    hide();
+    normativeSettingWindow->show();
 }
 
