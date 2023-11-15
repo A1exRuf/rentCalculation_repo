@@ -25,7 +25,7 @@
    <property name="title">
     <string>Выбор действия</string>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -63,6 +63,13 @@
       <widget class="QPushButton" name="pushButton_toPaymentAccounting">
        <property name="text">
         <string>Учёт оплаты</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_toUserSetting">
+       <property name="text">
+        <string>Управление учётными записями</string>
        </property>
       </widget>
      </item>

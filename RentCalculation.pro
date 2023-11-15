@@ -19,7 +19,10 @@ SOURCES += \
     methodnormatives.cpp \
     methodtenantcount.cpp \
     normativesettingwindow.cpp \
-    registrationwindow.cpp
+    paymentaccountingwindow.cpp \
+    paymenttablewindow.cpp \
+    registrationwindow.cpp \
+    usersettingwindow.cpp
 
 HEADERS += \
     calculationmethodchoicewindow.h \
@@ -31,7 +34,10 @@ HEADERS += \
     methodnormatives.h \
     methodtenantcount.h \
     normativesettingwindow.h \
-    registrationwindow.h
+    paymentaccountingwindow.h \
+    paymenttablewindow.h \
+    registrationwindow.h \
+    usersettingwindow.h
 
 FORMS += \
     calculationmethodchoicewindow.ui \
@@ -42,7 +48,10 @@ FORMS += \
     methodnormatives.ui \
     methodtenantcount.ui \
     normativesettingwindow.ui \
-    registrationwindow.ui
+    paymentaccountingwindow.ui \
+    paymenttablewindow.ui \
+    registrationwindow.ui \
+    usersettingwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

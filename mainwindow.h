@@ -18,15 +18,15 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    static bool getIsAdmin();
 
 private slots:
     void on_pushButton_signIn_clicked();
-
     void on_pushButton_toRegistration_clicked();
 
 private:
     Ui::MainWindow *ui;
-
+    static bool isAdmin;
     RegistrationWindow *registrationWindow;
     MenuWindow *menuWindow;
 };
