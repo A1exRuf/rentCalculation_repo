@@ -38,7 +38,7 @@
      <string>Назад</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>37</x>
@@ -77,7 +77,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="pushButton_meteringDevices">
        <property name="text">
         <string>По приборам учёта</string>
        </property>

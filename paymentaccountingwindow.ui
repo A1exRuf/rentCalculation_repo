@@ -25,35 +25,29 @@
    <property name="title">
     <string>Учёт оплаты</string>
    </property>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>50</y>
-      <width>284</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Введите номер лицевого счёта</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>75</y>
-      <width>281</width>
-      <height>84</height>
+      <x>0</x>
+      <y>25</y>
+      <width>371</width>
+      <height>141</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QLineEdit" name="lineEdit_selectRow">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Номер лицевого счёта</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox_selectRow"/>
+       </item>
+      </layout>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_checkPayment">

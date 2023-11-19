@@ -4,11 +4,12 @@
 #include <QDialog>
 #include <QMessageBox>
 #include <QString>
+#include <QComboBox>
 
 #include <QSqlDatabase>
-#include <QSqlTableModel>
 #include <QSqlQuery>
 #include <QSqlRecord>
+
 
 #include "calculations.h"
 
@@ -36,7 +37,6 @@ private:
     Ui::MethodAreaWindow *ui;
 
     QSqlDatabase db;
-    QSqlTableModel *model;
 };
 
 #endif // METHODAREAWINDOW_H

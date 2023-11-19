@@ -3,7 +3,6 @@
 
 #include <QDialog>
 #include <QSqlTableModel>
-#include "registrationwindow.h"
 
 namespace Ui {
 class NormativeSettingWindow;

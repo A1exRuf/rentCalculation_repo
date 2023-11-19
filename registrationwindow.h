@@ -6,7 +6,6 @@
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
-#include <QSqlTableModel>
 
 namespace Ui {
 class RegistrationWindow;
@@ -33,7 +32,6 @@ private:
 
     QSqlDatabase db;
     QSqlQuery *query;
-    QSqlTableModel *model;
 };
 
 #endif // REGISTRATIONWINDOW_H

@@ -9,8 +9,17 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    registrationWindow = new RegistrationWindow();
-    connect(registrationWindow, &RegistrationWindow::toLoginWindow, this, &MainWindow::show);
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("C:/Users/alexe/Documents/GitHub/rentCalculation_repo/DB/db.sqlite");
+
+    if(db.open())
+    {
+        qDebug("open");
+    }
+    else
+    {
+        qDebug("not open");
+    }
 }
 
 MainWindow::~MainWindow()
@@ -53,6 +62,8 @@ void MainWindow::on_pushButton_signIn_clicked()
 
 void MainWindow::on_pushButton_toRegistration_clicked()
 {
+    registrationWindow = new RegistrationWindow();
+    connect(registrationWindow, &RegistrationWindow::toLoginWindow, this, &MainWindow::show);
     registrationWindow->show();
     this->close();
 }

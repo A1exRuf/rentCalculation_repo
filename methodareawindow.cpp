@@ -7,8 +7,9 @@ MethodAreaWindow::MethodAreaWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    model = new QSqlTableModel(this, db);
-    model->setTable("TenantsData");
+    QSqlQueryModel *comboBoxModel = new QSqlQueryModel(this);
+    comboBoxModel->setQuery("SELECT PersonalAccount FROM TenantsData", db);
+    ui->comboBox_selectRow->setModel(comboBoxModel);
 }
 
 MethodAreaWindow::~MethodAreaWindow()
@@ -24,7 +25,7 @@ void MethodAreaWindow::on_pushButton_clicked()
 
 void MethodAreaWindow::on_pushButton_2_clicked()
 {
-    QString account = ui->lineEdit_selectRow->text();
+    QString account = ui->comboBox_selectRow->currentText();
 
     QSqlQuery query;
     query.prepare("SELECT * FROM TenantsData WHERE PersonalAccount = ?");
@@ -38,8 +39,5 @@ void MethodAreaWindow::on_pushButton_2_clicked()
         QSqlRecord record = query.record();
         double areaCosts = Calculations::calculateAreaCosts(record);
         Calculations::pushToTable(this, query, account, areaCosts);
-    } else {
-        qDebug() << "Счёт не существует";
     }
 }
-

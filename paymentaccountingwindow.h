@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QString>
 #include <QVariant>
+#include <QComboBox>
 
 #include <QSqlDatabase>
 #include <QSqlTableModel>

@@ -7,6 +7,7 @@
 #include "methodtenantcount.h"
 #include "methodfixedtariffs.h"
 #include "methodnormatives.h"
+#include "methodmeteringdevices.h"
 
 namespace Ui {
 class CalculationMethodChoiceWindow;
@@ -34,12 +35,15 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_meteringDevices_clicked();
+
 private:
     Ui::CalculationMethodChoiceWindow *ui;
     MethodAreaWindow *methodAreaWindow;
     MethodTenantCount *methodTenantCount;
     MethodFixedTariffs *methodFixedTariffs;
     MethodNormatives *methodNormatives;
+    MethodMeteringDevices *methodMeteringDevices;
 };
 
 #endif // CALCULATIONMETHODCHOICEWINDOW_H

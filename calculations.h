@@ -18,6 +18,7 @@ public:
     static void pushToTable(QWidget* parentWidget ,QSqlQuery query, QString account, double costs);
 private:
     static double getNormativeValue(const QString& service, QSqlQuery query);
+    static double applyDiscount(double cost);
 };
 
 #endif // CALCULATIONS_H

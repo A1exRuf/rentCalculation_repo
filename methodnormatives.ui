@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="pushButton_toChoice">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>270</y>
+     <x>310</x>
+     <y>260</y>
      <width>71</width>
      <height>21</height>
     </rect>
@@ -38,27 +38,27 @@
    <property name="title">
     <string>Расчёт по нормативам потребления</string>
    </property>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>48</x>
-      <y>59</y>
-      <width>288</width>
-      <height>81</height>
+      <x>14</x>
+      <y>28</y>
+      <width>341</width>
+      <height>121</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Введите номер лицевого счёта</string>
+          <string>Лицевой счёт:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_selectRow"/>
+        <widget class="QComboBox" name="comboBox_selectRow"/>
        </item>
       </layout>
      </item>

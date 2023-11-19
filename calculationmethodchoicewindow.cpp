@@ -7,14 +7,10 @@ CalculationMethodChoiceWindow::CalculationMethodChoiceWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    methodAreaWindow = new MethodAreaWindow();
-    connect(methodAreaWindow, &MethodAreaWindow::toChoiceWindow, this, &CalculationMethodChoiceWindow::show);
-    methodTenantCount = new MethodTenantCount();
-    connect(methodTenantCount, &MethodTenantCount::toChoiceWindow, this, &MethodTenantCount::show);
-    methodFixedTariffs = new MethodFixedTariffs();
-    connect(methodFixedTariffs, &MethodFixedTariffs::toChoiceWindow, this, &MethodFixedTariffs::show);
-    methodNormatives = new MethodNormatives();
-    connect(methodNormatives, &MethodNormatives::toChoiceWindow, this, &MethodNormatives::show);
+
+
+
+
 }
 
 CalculationMethodChoiceWindow::~CalculationMethodChoiceWindow()
@@ -24,35 +20,53 @@ CalculationMethodChoiceWindow::~CalculationMethodChoiceWindow()
 
 void CalculationMethodChoiceWindow::on_pushButton_toMenu_clicked()
 {
-    this->hide();
+    this->close();
     emit toMenuWindow();
 }
 
 
 void CalculationMethodChoiceWindow::on_pushButton_clicked()
 {
-    this->hide();
+    methodAreaWindow = new MethodAreaWindow();
+    connect(methodAreaWindow, &MethodAreaWindow::toChoiceWindow, this, &CalculationMethodChoiceWindow::show);
+    this->close();
     methodAreaWindow->show();
 }
 
 
 void CalculationMethodChoiceWindow::on_pushButton_2_clicked()
 {
-    this->hide();
+    methodTenantCount = new MethodTenantCount();
+    connect(methodTenantCount, &MethodTenantCount::toChoiceWindow, this, &MethodTenantCount::show);
+    this->close();
     methodTenantCount->show();
 }
 
 
 void CalculationMethodChoiceWindow::on_pushButton_3_clicked()
 {
-    this->hide();
+    methodFixedTariffs = new MethodFixedTariffs();
+    connect(methodFixedTariffs, &MethodFixedTariffs::toChoiceWindow, this, &MethodFixedTariffs::show);
+    this->close();
     methodFixedTariffs->show();
 }
 
 
 void CalculationMethodChoiceWindow::on_pushButton_4_clicked()
 {
-    this->hide();
+    methodNormatives = new MethodNormatives();
+    connect(methodNormatives, &MethodNormatives::toChoiceWindow, this, &MethodNormatives::show);
+    this->close();
     methodNormatives->show();
+}
+
+
+void CalculationMethodChoiceWindow::on_pushButton_meteringDevices_clicked()
+{
+    methodMeteringDevices = new MethodMeteringDevices();
+    connect(methodMeteringDevices, &MethodMeteringDevices::toChoiceWindow, this, &MethodMeteringDevices::show);
+    this->close();
+    methodMeteringDevices->show();
+
 }
 

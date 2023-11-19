@@ -24,6 +24,11 @@ double Calculations::calculateAreaCosts(const QSqlRecord& record)
         areaCosts = totalArea * totalAreaRate;
     }
 
+    if (record.value("Benefits") == "Частичная")
+        {
+        areaCosts = applyDiscount(areaCosts);
+    }
+
     return areaCosts;
 }
 
@@ -39,6 +44,11 @@ double Calculations::calculateTenantsCosts(const QSqlRecord& record)
 
     residentsCosts += registeredResidents * registeredResidentsRate;
     residentsCosts += temporaryResidents * temporaryResidentsRate;
+
+    if (record.value("Benefits") == "Частичная")
+        {
+        residentsCosts = applyDiscount(residentsCosts);
+    }
 
     return residentsCosts;
 }
@@ -59,69 +69,82 @@ double Calculations::calculateFixedRates(const QSqlRecord& record)
     fixedRatesCosts += electricityConsumption * electricityRate;
     fixedRatesCosts += gasConsumption * gasRate;
 
+    if (record.value("Benefits") == "Частичная")
+        {
+        fixedRatesCosts = applyDiscount(fixedRatesCosts);
+    }
+
     return fixedRatesCosts;
 }
 
 double Calculations::calculateByNormatives(const QSqlRecord& record, QSqlQuery query)
 {
-    double waterRate = 7.5;
-    double solidWasteRate = 24.8;
-    double electricityRate = 3.2;
-    double gasRate = 3.9;
-
-    double waterConsumption = record.value("WaterConsumption").toDouble();
-    double solidWasteConsumption = record.value("VolumeOfWaste").toDouble();
-    double gasConsumption = record.value("GasConsumption").toDouble();
-    double electricityConsumption = record.value("ElectricityConsumption").toDouble();
-
-    double normativeWater = getNormativeValue("WaterSupply", query);
-    double normativeSolidWaste = getNormativeValue("SolidWasteManagement", query);
-    double normativeGas = getNormativeValue("GasSupply", query);
-
-    int registeredResidents = record.value("RegisteredResidents").toInt();
-    double normativeElectricity = 0;
-    switch(registeredResidents)
+    if (record.value("Benefits") == "Полная")
     {
-    case 1:
-        normativeElectricity = getNormativeValue("Electricity1people", query);
-        break;
-    case 2:
-        normativeElectricity = getNormativeValue("Electricity2people", query);
-        break;
-    case 3:
-        normativeElectricity = getNormativeValue("Electricity3people", query);
-        break;
-    case 4:
-        normativeElectricity = getNormativeValue("Electricity4people", query);
-        break;
-    default:
-        normativeElectricity = getNormativeValue("Electricity5people", query);
-        break;
+        double waterRate = 7.5;
+        double solidWasteRate = 24.8;
+        double electricityRate = 3.2;
+        double gasRate = 3.9;
+
+        double waterConsumption = record.value("WaterConsumption").toDouble();
+        double solidWasteConsumption = record.value("VolumeOfWaste").toDouble();
+        double gasConsumption = record.value("GasConsumption").toDouble();
+        double electricityConsumption = record.value("ElectricityConsumption").toDouble();
+
+        double normativeWater = getNormativeValue("WaterSupply", query);
+        double normativeSolidWaste = getNormativeValue("SolidWasteManagement", query);
+        double normativeGas = getNormativeValue("GasSupply", query);
+
+        int registeredResidents = record.value("RegisteredResidents").toInt();
+        double normativeElectricity = 0;
+        switch(registeredResidents)
+        {
+        case 1:
+            normativeElectricity = getNormativeValue("Electricity1people", query);
+            break;
+        case 2:
+            normativeElectricity = getNormativeValue("Electricity2people", query);
+            break;
+        case 3:
+            normativeElectricity = getNormativeValue("Electricity3people", query);
+            break;
+        case 4:
+            normativeElectricity = getNormativeValue("Electricity4people", query);
+            break;
+        default:
+            normativeElectricity = getNormativeValue("Electricity5people", query);
+            break;
+        }
+
+        double normativeCosts = 0.0;
+
+        if (waterConsumption > normativeWater)
+        {
+            normativeCosts += (waterConsumption - normativeWater) * waterRate;
+        }
+
+        if (solidWasteConsumption > normativeSolidWaste)
+        {
+            normativeCosts += (solidWasteConsumption - normativeSolidWaste) * solidWasteRate;
+        }
+
+        if (gasConsumption > normativeGas)
+        {
+            normativeCosts += (gasConsumption - normativeGas) * gasRate;
+        }
+
+        if (electricityConsumption > normativeElectricity)
+        {
+            normativeCosts += (electricityConsumption - normativeElectricity) * electricityRate;
+        }
+
+        return normativeCosts;
+    }
+    else
+    {
+        return -1;
     }
 
-    double normativeCosts = 0.0;
-
-    if (waterConsumption > normativeWater)
-    {
-        normativeCosts += (waterConsumption - normativeWater) * waterRate;
-    }
-
-    if (solidWasteConsumption > normativeSolidWaste)
-    {
-        normativeCosts += (solidWasteConsumption - normativeSolidWaste) * solidWasteRate;
-    }
-
-    if (gasConsumption > normativeGas)
-    {
-        normativeCosts += (gasConsumption - normativeGas) * gasRate;
-    }
-
-    if (electricityConsumption > normativeElectricity)
-    {
-        normativeCosts += (electricityConsumption - normativeElectricity) * electricityRate;
-    }
-
-    return normativeCosts;
 }
 
 double Calculations::getNormativeValue(const QString& service, QSqlQuery query)
@@ -146,4 +169,18 @@ void Calculations::pushToTable(QWidget* parentWidget ,QSqlQuery query, QString a
         QMessageBox::about(parentWidget, "Операция не была проведена", "Что-то пошло не так");
     }
     QMessageBox::about(parentWidget, "Операция проведена", "Счет составляет: " + QString::number(costs) + " byn" );
+}
+
+double Calculations::applyDiscount(double cost)
+{
+    double discountedCost = cost;
+
+    QSqlQuery query("SELECT discount FROM Benefits WHERE type = 'partial'");
+    if(query.exec() && query.next())
+    {
+        int discount = query.value(0).toDouble();
+        discountedCost = cost - (cost * discount / 100);
+    }
+
+    return discountedCost;
 }

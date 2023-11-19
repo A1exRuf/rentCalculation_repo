@@ -1,5 +1,5 @@
-#ifndef METHODNORMATIVES_H
-#define METHODNORMATIVES_H
+#ifndef METHODMETERINGDEVICES_H
+#define METHODMETERINGDEVICES_H
 
 #include <QDialog>
 #include <QMessageBox>
@@ -14,16 +14,16 @@
 #include "calculations.h"
 
 namespace Ui {
-class MethodNormatives;
+class MethodMeteringDevices;
 }
 
-class MethodNormatives : public QDialog
+class MethodMeteringDevices : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit MethodNormatives(QWidget *parent = nullptr);
-    ~MethodNormatives();
+    explicit MethodMeteringDevices(QWidget *parent = nullptr);
+    ~MethodMeteringDevices();
 
 signals:
     void toChoiceWindow();
@@ -34,9 +34,9 @@ private slots:
     void on_pushButton_toChoice_clicked();
 
 private:
-    Ui::MethodNormatives *ui;
+    Ui::MethodMeteringDevices *ui;
 
     QSqlDatabase db;
 };
 
-#endif // METHODNORMATIVES_H
+#endif // METHODMETERINGDEVICES_H

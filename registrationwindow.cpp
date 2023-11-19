@@ -8,24 +8,6 @@ RegistrationWindow::RegistrationWindow(QWidget *parent) :
     ui(new Ui::RegistrationWindow)
 {
     ui->setupUi(this);
-
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("C:/Users/alexe/Documents/GitHub/rentCalculation_repo/DB/db.sqlite");
-
-    if(db.open())
-    {
-        qDebug("open");
-    }
-    else
-    {
-        qDebug("not open");
-    }
-
-    model = new QSqlTableModel(this, db);
-    model->setTable("UsersList");
-    model->select();
-
-    ui->tableView->setModel(model);
 }
 
 RegistrationWindow::~RegistrationWindow()
@@ -46,20 +28,22 @@ void RegistrationWindow::on_pushButton_register_clicked()
     QString password = ui->lineEdit_password->text();
     QString passwordConfirm = ui->lineEdit_passwordConfirm->text();
 
-    if(password == passwordConfirm)
+    if(login !="" && password != "" && password == passwordConfirm)
     {
-        QSqlRecord newRecord = model->record();
+        QSqlQuery query;
 
-        newRecord.setValue("login", login);
-        newRecord.setValue("password", password);
+        query.prepare("INSERT INTO UsersList (login, password) VALUES (:login, :password)");
+        query.bindValue(":login", login);
+        query.bindValue(":password", password);
 
-        model->insertRecord(-1, newRecord);
-        model->select();
-
-        QMessageBox::information(this, "Registration", "User added successfully!");
-    }
-    else{
-        QMessageBox::information(this, "Login", "Incorrect");
+        if(query.exec())
+        {
+            QMessageBox::about(this, "Регистрация", "Регистрация прошла успешно");
+        }
+        else
+        {
+            QMessageBox::about(this, "Регистрация", "Не удалось зарегистрироваться");
+        }
     }
 }
 

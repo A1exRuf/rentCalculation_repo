@@ -4,9 +4,9 @@
 #include <QDialog>
 #include <QMessageBox>
 #include <QString>
+#include <QComboBox>
 
 #include <QSqlDatabase>
-#include <QSqlTableModel>
 #include <QSqlQuery>
 #include <QSqlRecord>
 
@@ -36,7 +36,6 @@ private:
     Ui::MethodTenantCount *ui;
 
     QSqlDatabase db;
-    QSqlTableModel *model;
 };
 
 #endif // METHODTENANTCOUNT_H

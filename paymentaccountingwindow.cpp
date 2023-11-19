@@ -6,8 +6,10 @@ PaymentAccountingWindow::PaymentAccountingWindow(QWidget *parent) :
     ui(new Ui::PaymentAccountingWindow)
 {
     ui->setupUi(this);
-    paymentTableWindow = new PaymentTableWindow();
-    connect(paymentTableWindow, &PaymentTableWindow::toPaymentAccounting, this, &PaymentAccountingWindow::show);
+
+    QSqlQueryModel *comboBoxModel = new QSqlQueryModel(this);
+    comboBoxModel->setQuery("SELECT PersonalAccount FROM TenantsData", db);
+    ui->comboBox_selectRow->setModel(comboBoxModel);
 }
 
 PaymentAccountingWindow::~PaymentAccountingWindow()
@@ -17,14 +19,14 @@ PaymentAccountingWindow::~PaymentAccountingWindow()
 
 void PaymentAccountingWindow::on_pushButton_toMenu_clicked()
 {
-    hide();
+    this->close();
     emit toMenuWindow();
 }
 
 
 void PaymentAccountingWindow::on_pushButton_checkPayment_clicked()
 {
-    QString account = ui->lineEdit_selectRow->text();
+    QString account = ui->comboBox_selectRow->currentText();
     qDebug("test");
     QSqlQuery query;
     query.exec("SELECT * FROM TenantsData WHERE PersonalAccount=\'" + account + "\'");
@@ -45,7 +47,9 @@ void PaymentAccountingWindow::on_pushButton_checkPayment_clicked()
 
 void PaymentAccountingWindow::on_pushButton_toTable_clicked()
 {
+    paymentTableWindow = new PaymentTableWindow();
+    connect(paymentTableWindow, &PaymentTableWindow::toPaymentAccounting, this, &PaymentAccountingWindow::show);
+    this->close();
     paymentTableWindow->show();
-    this->hide();
 }
 

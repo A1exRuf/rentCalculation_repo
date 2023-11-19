@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    benefitsettingwindow.cpp \
     calculationmethodchoicewindow.cpp \
     calculations.cpp \
     main.cpp \
@@ -16,6 +17,7 @@ SOURCES += \
     menuwindow.cpp \
     methodareawindow.cpp \
     methodfixedtariffs.cpp \
+    methodmeteringdevices.cpp \
     methodnormatives.cpp \
     methodtenantcount.cpp \
     normativesettingwindow.cpp \
@@ -25,12 +27,14 @@ SOURCES += \
     usersettingwindow.cpp
 
 HEADERS += \
+    benefitsettingwindow.h \
     calculationmethodchoicewindow.h \
     calculations.h \
     mainwindow.h \
     menuwindow.h \
     methodareawindow.h \
     methodfixedtariffs.h \
+    methodmeteringdevices.h \
     methodnormatives.h \
     methodtenantcount.h \
     normativesettingwindow.h \
@@ -40,11 +44,13 @@ HEADERS += \
     usersettingwindow.h
 
 FORMS += \
+    benefitsettingwindow.ui \
     calculationmethodchoicewindow.ui \
     mainwindow.ui \
     menuwindow.ui \
     methodareawindow.ui \
     methodfixedtariffs.ui \
+    methodmeteringdevices.ui \
     methodnormatives.ui \
     methodtenantcount.ui \
     normativesettingwindow.ui \

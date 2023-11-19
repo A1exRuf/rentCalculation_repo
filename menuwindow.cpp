@@ -58,3 +58,12 @@ void MenuWindow::on_pushButton_toUserSetting_clicked()
     userSettingWindow->show();
 }
 
+
+void MenuWindow::on_pushButton_toBenefitSettings_clicked()
+{
+    benefitSettingWindow = new BenefitSettingWindow;
+    connect(benefitSettingWindow, &BenefitSettingWindow::toMenuWindow, this, &BenefitSettingWindow::show);
+    this->close();
+    benefitSettingWindow->show();
+}
+

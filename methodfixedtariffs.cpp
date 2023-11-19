@@ -7,8 +7,9 @@ MethodFixedTariffs::MethodFixedTariffs(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    model = new QSqlTableModel(this, db);
-    model->setTable("TenantsData");
+    QSqlQueryModel *comboBoxModel = new QSqlQueryModel(this);
+    comboBoxModel->setQuery("SELECT PersonalAccount FROM TenantsData", db);
+    ui->comboBox_selectRow->setModel(comboBoxModel);
 }
 
 MethodFixedTariffs::~MethodFixedTariffs()
@@ -16,9 +17,10 @@ MethodFixedTariffs::~MethodFixedTariffs()
     delete ui;
 }
 
-void MethodFixedTariffs::on_pushButton_2_clicked()
+void MethodFixedTariffs::on_pushButton_setTariff_clicked()
 {
-    QString account = ui->lineEdit_selectRow->text();
+    QString account = ui->comboBox_selectRow->currentText();
+    QString tarrif = ui->lineEdit_tariff->text();
 
     QSqlQuery query;
     query.prepare("SELECT * FROM TenantsData WHERE PersonalAccount = ?");
@@ -30,10 +32,7 @@ void MethodFixedTariffs::on_pushButton_2_clicked()
 
     if (query.next()) {
         QSqlRecord record = query.record();
-        double fixedCosts = Calculations::calculateFixedRates(record);
-        Calculations::pushToTable(this, query, account, fixedCosts);
-    } else {
-        qDebug() << "Счёт не существует";
+        Calculations::pushToTable(this, query, account, tarrif.toDouble());
     }
 }
 

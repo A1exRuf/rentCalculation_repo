@@ -1,9 +1,9 @@
-#include "methodtenantcount.h"
-#include "ui_methodtenantcount.h"
+#include "methodmeteringdevices.h"
+#include "ui_methodmeteringdevices.h"
 
-MethodTenantCount::MethodTenantCount(QWidget *parent) :
+MethodMeteringDevices::MethodMeteringDevices(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::MethodTenantCount)
+    ui(new Ui::MethodMeteringDevices)
 {
     ui->setupUi(this);
 
@@ -12,12 +12,12 @@ MethodTenantCount::MethodTenantCount(QWidget *parent) :
     ui->comboBox_selectRow->setModel(comboBoxModel);
 }
 
-MethodTenantCount::~MethodTenantCount()
+MethodMeteringDevices::~MethodMeteringDevices()
 {
     delete ui;
 }
 
-void MethodTenantCount::on_pushButton_calculate_clicked()
+void MethodMeteringDevices::on_pushButton_calculate_clicked()
 {
     QString account = ui->comboBox_selectRow->currentText();
 
@@ -31,15 +31,14 @@ void MethodTenantCount::on_pushButton_calculate_clicked()
 
     if (query.next()) {
         QSqlRecord record = query.record();
-        double tenantsCosts = Calculations::calculateTenantsCosts(record);
-        Calculations::pushToTable(this, query, account, tenantsCosts);
+        double fixedCosts = Calculations::calculateFixedRates(record);
+        Calculations::pushToTable(this, query, account, fixedCosts);
     }
 }
 
-
-void MethodTenantCount::on_pushButton_toChoiceWin_clicked()
+void MethodMeteringDevices::on_pushButton_toChoice_clicked()
 {
-    hide();
+    this->close();
     emit toChoiceWindow();
 }
 

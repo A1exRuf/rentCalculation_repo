@@ -4,11 +4,12 @@
 #include <QDialog>
 #include <QMessageBox>
 #include <QString>
+#include <QComboBox>
 
 #include <QSqlDatabase>
-#include <QSqlTableModel>
 #include <QSqlQuery>
 #include <QSqlRecord>
+
 
 #include "calculations.h"
 
@@ -28,7 +29,7 @@ signals:
     void toChoiceWindow();
 
 private slots:
-    void on_pushButton_2_clicked();
+    void on_pushButton_setTariff_clicked();
 
     void on_pushButton_clicked();
 
@@ -36,7 +37,6 @@ private:
     Ui::MethodFixedTariffs *ui;
 
     QSqlDatabase db;
-    QSqlTableModel *model;
 };
 
 #endif // METHODFIXEDTARIFFS_H
