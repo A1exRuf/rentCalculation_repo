@@ -1,5 +1,6 @@
 #include "methodnormatives.h"
 #include "ui_methodnormatives.h"
+#include "calculations.h"
 
 MethodNormatives::MethodNormatives(QWidget *parent) :
     QDialog(parent),

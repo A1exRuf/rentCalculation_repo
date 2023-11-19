@@ -2,16 +2,12 @@
 #define METHODMETERINGDEVICES_H
 
 #include <QDialog>
-#include <QMessageBox>
 #include <QString>
 #include <QComboBox>
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlRecord>
-
-
-#include "calculations.h"
 
 namespace Ui {
 class MethodMeteringDevices;

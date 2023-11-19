@@ -45,8 +45,6 @@ void MainWindow::on_pushButton_signIn_clicked()
         {
             isAdmin = qry.value(2) == "admin";
 
-            qDebug() << isAdmin;
-
             menuWindow = new MenuWindow(this);
             connect(menuWindow, &MenuWindow::toLoginWindow, this, &MainWindow::show);
 

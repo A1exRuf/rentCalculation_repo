@@ -1,5 +1,6 @@
 #include "methodtenantcount.h"
 #include "ui_methodtenantcount.h"
+#include "calculations.h"
 
 MethodTenantCount::MethodTenantCount(QWidget *parent) :
     QDialog(parent),

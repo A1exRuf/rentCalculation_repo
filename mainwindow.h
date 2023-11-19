@@ -5,7 +5,6 @@
 #include "menuwindow.h"
 
 #include <QMainWindow>
-#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

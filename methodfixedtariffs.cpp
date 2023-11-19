@@ -1,5 +1,6 @@
 #include "methodfixedtariffs.h"
 #include "ui_methodfixedtariffs.h"
+#include "calculations.h"
 
 MethodFixedTariffs::MethodFixedTariffs(QWidget *parent) :
     QDialog(parent),

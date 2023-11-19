@@ -1,5 +1,6 @@
 #include "methodmeteringdevices.h"
 #include "ui_methodmeteringdevices.h"
+#include "calculations.h"
 
 MethodMeteringDevices::MethodMeteringDevices(QWidget *parent) :
     QDialog(parent),

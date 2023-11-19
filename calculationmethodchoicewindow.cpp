@@ -6,11 +6,6 @@ CalculationMethodChoiceWindow::CalculationMethodChoiceWindow(QWidget *parent) :
     ui(new Ui::CalculationMethodChoiceWindow)
 {
     ui->setupUi(this);
-
-
-
-
-
 }
 
 CalculationMethodChoiceWindow::~CalculationMethodChoiceWindow()

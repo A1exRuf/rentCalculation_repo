@@ -1,5 +1,6 @@
 #include "methodareawindow.h"
 #include "ui_methodareawindow.h"
+#include "calculations.h"
 
 MethodAreaWindow::MethodAreaWindow(QWidget *parent) :
     QDialog(parent),

@@ -2,16 +2,9 @@
 #define BENEFITSETTINGWINDOW_H
 
 #include <QDialog>
-#include <QMessageBox>
-#include <QString>
-#include <QComboBox>
-#include <QVariant>
-
 #include <QSqlTableModel>
 #include <QSqlQuery>
 #include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QSqlRecord>
 
 namespace Ui {
 class BenefitSettingWindow;
