@@ -45,5 +45,9 @@ void RegistrationWindow::on_pushButton_register_clicked()
             QMessageBox::about(this, "Регистрация", "Не удалось зарегистрироваться");
         }
     }
+    else
+    {
+        QMessageBox::about(this, "Ошибка", "Неверные данные");
+    }
 }
 

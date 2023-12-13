@@ -50,6 +50,7 @@ void PaymentAccountingWindow::on_pushButton_toTable_clicked()
     paymentTableWindow = new PaymentTableWindow();
     connect(paymentTableWindow, &PaymentTableWindow::toPaymentAccounting, this, &PaymentAccountingWindow::show);
     this->close();
+    paymentTableWindow->setWindowTitle("Учёт оплаты");
     paymentTableWindow->show();
 }
 

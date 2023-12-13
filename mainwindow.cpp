@@ -49,12 +49,13 @@ void MainWindow::on_pushButton_signIn_clicked()
             connect(menuWindow, &MenuWindow::toLoginWindow, this, &MainWindow::show);
 
             hide();
+            menuWindow->setWindowTitle("Главное меню");
             menuWindow->show();
         }
-    }
-
-    else {
-        QMessageBox::information(this, "Login", "Incorrect");
+        else
+        {
+            QMessageBox::about(this, "Ошибка", "Неверные данные");
+        }
     }
 }
 
@@ -62,6 +63,7 @@ void MainWindow::on_pushButton_toRegistration_clicked()
 {
     registrationWindow = new RegistrationWindow();
     connect(registrationWindow, &RegistrationWindow::toLoginWindow, this, &MainWindow::show);
+    registrationWindow->setWindowTitle("Регистрация");
     registrationWindow->show();
     this->close();
 }

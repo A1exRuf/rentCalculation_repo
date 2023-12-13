@@ -85,7 +85,14 @@ void BenefitSettingWindow::on_pushButton_discountChange_clicked()
 {
     QSqlQuery query;
     query.prepare("UPDATE Benefits SET discount = :newDiscount WHERE type = 'partial'");
-    int newDiscount = ui->lineEdit_discount->text().toInt();
+    QString discountText = ui->lineEdit_discount->text();
+    bool ok;
+    int newDiscount = discountText.toInt(&ok);
+    if (!ok) {
+        QMessageBox::critical(this, "Ошибка", "Неверное число");
+        return;
+    }
+
     query.bindValue(":newDiscount", newDiscount);
     query.exec();
 }

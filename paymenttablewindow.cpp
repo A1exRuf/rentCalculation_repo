@@ -26,8 +26,13 @@ void PaymentTableWindow::on_pushButton_add_clicked()
 
 void PaymentTableWindow::on_pushButton_delete_clicked()
 {
-    model->removeRow(currentRow);
-    model->select();
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(nullptr, "Вы уверены?", "Вы уверены, что хотите удалить данные?", QMessageBox::Yes | QMessageBox::No);
+
+    if (reply == QMessageBox::Yes) {
+        model->removeRow(currentRow);
+        model->select();
+    }
 }
 
 void PaymentTableWindow::on_tableView_clicked(const QModelIndex &index)

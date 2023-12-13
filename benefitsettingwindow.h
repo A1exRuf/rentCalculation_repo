@@ -5,6 +5,7 @@
 #include <QSqlTableModel>
 #include <QSqlQuery>
 #include <QSqlDatabase>
+#include <QMessageBox>
 
 namespace Ui {
 class BenefitSettingWindow;

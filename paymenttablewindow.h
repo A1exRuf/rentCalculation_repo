@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QSqlTableModel>
+#include <QMessageBox>
 
 namespace Ui {
 class PaymentTableWindow;

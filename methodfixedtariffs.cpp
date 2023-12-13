@@ -21,7 +21,14 @@ MethodFixedTariffs::~MethodFixedTariffs()
 void MethodFixedTariffs::on_pushButton_setTariff_clicked()
 {
     QString account = ui->comboBox_selectRow->currentText();
-    QString tarrif = ui->lineEdit_tariff->text();
+    QString tariffText = ui->lineEdit_tariff->text();
+
+    bool ok;
+    double tariff = tariffText.toDouble(&ok);
+    if (!ok) {
+        QMessageBox::critical(this, "Ошибка", "Введена неверная сумма");
+        return;
+    }
 
     QSqlQuery query;
     query.prepare("SELECT * FROM TenantsData WHERE PersonalAccount = ?");
@@ -33,7 +40,7 @@ void MethodFixedTariffs::on_pushButton_setTariff_clicked()
 
     if (query.next()) {
         QSqlRecord record = query.record();
-        Calculations::pushToTable(this, query, account, tarrif.toDouble());
+        Calculations::pushToTable(this, query, account, tariff);
     }
 }
 

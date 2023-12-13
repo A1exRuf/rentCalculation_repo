@@ -30,8 +30,13 @@ void UserSettingWindow::on_pushButton_add_clicked()
 
 void UserSettingWindow::on_pushButton_remove_clicked()
 {
-    model->removeRow(currentRow);
-    model->select();
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(nullptr, "Вы уверены?", "Вы уверены, что хотите удалить пользователя?", QMessageBox::Yes | QMessageBox::No);
+
+    if (reply == QMessageBox::Yes) {
+        model->removeRow(currentRow);
+        model->select();
+    }
 }
 
 void UserSettingWindow::on_pushButton_idSort_clicked()
